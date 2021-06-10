@@ -18,8 +18,8 @@ class Todo(db.Model):
 @app.route('/', methods=['POST','GET'])
 def home():
     if request.method=='POST':
-        task_content = request.form['content']
-        new_task = Todo(content=task_content)
+        task_content = request.form['task']
+        new_task = Todo(task=task_content)
 
         try:
             db.session.add(new_task)
@@ -31,8 +31,7 @@ def home():
 
     else:
          tasks = Todo.query.all()
-    
-    return render_template('index.html', tasks=tasks)
+         return render_template('index.html', tasks=tasks)
 
 @app.route('/delete/<int:id>')
 def delete(id):
