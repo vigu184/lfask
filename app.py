@@ -48,8 +48,8 @@ def update(id):
     task = Todo.query.get_or_404(id)
 
     if request.method == 'POST':
-        task.content = request.form['content']
-
+        updated_task = request.form['content']
+        task.task = updated_task
         try:
             db.session.commit()
             return redirect('/')
